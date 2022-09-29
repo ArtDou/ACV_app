@@ -11,7 +11,8 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
 
-
+face_class = "NA"
+face_prob = [0]
 # Set which landmarks/pairs of landmark to use to train your algorithm
 pairs = [(145, 159), (80, 88), (13, 14), (374, 386), (310, 318)]
 pairwise = (1, 126, 206, 13, 14, 62, 308, 263, 33)
@@ -46,8 +47,6 @@ with mp_face_mesh.FaceMesh(
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         image_height, image_width, _ = image.shape
-        face_class = "NA"
-        face_prob = [0]
 
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
@@ -69,7 +68,7 @@ with mp_face_mesh.FaceMesh(
                 X = pd.DataFrame([row])
                 face_class = model.predict(X)[0]
                 face_prob = model.predict_proba(X)[0]
-                print(face_class, face_prob)
+                # print(face_class, face_prob)
 
             # Get status box
             cv2.rectangle(image, (0, 0), (250, 60), (245, 117, 16), -1)

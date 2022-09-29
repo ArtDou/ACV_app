@@ -28,7 +28,7 @@ def red_nose(holistic, img):
 
 
 def carnival(holistic, img):
-    img2_import = cv2.imread("./app/filters/data/carniva.png", cv2.IMREAD_UNCHANGED)
+    img2_import = cv2.imread("./app/utils/filters/data/carniva.png", cv2.IMREAD_UNCHANGED)
     img2_import = cv2.resize(
         img2_import, None, fx=0.06, fy=0.06, interpolation=cv2.INTER_LINEAR
     )
